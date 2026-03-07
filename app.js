@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
-const Listing = require("./models/Listing")
-
-const ejs = require("ejs");
 
 const ejsMate = require('ejs-mate')
+app.set("view engine", "ejs");
+
  
 const path = require("path");
 
-app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"))
 
 app.use(express.urlencoded({extended:true}));
@@ -25,14 +23,91 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const mongoose = require("mongoose");
 
+
+
+
+
+//  flash 
+const flash = require("connect-flash");
+
+
+
+//  express session 
+
+const session = require("express-session");
+
+const sessionoptions = {
+    secret : "brocode",
+    resave : false,
+    saveUninitialized : true,
+    cookie:{
+        expires : Date.now() * 1000 * 24 * 60 * 60 * 7,
+        maxAge : 1000 * 60 *60 *24 * 7,
+        httpOnly : true
+        
+    }
+}
+
+app.use(session(sessionoptions));
+
+
+
+
+//  to use passport we have to require it
+const passport = require("passport")
+//  to use local strategy and any kind of passport credential like facebook, twiiter, google
+const localStrategy = require("passport-local");
+// user schema
+const User = require("./models/User")
+
+//  to initialize the passport every time we the session is created
+app.use(passport.initialize());
+//  every time session know the user
+app.use(passport.session());
+
+//  use static authentication method of model in localstrategy
+passport.use(new localStrategy(User.authenticate()))
+app.use(flash())
+
+//  use static serialize and deserialize model for passport session support
+//  mean save the user and remove the user from the session
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use((req, res, next)=>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    
+    res.locals.currUser = req.user;
+    next();
+})
+
+
+const listingRouter = require("./routes/listing")
+const userRouter = require("./routes/user");
+const reviewRouter = require("./routes/review")
+
+app.use("/listing", listingRouter)
+app.use("/listing/:id/review", reviewRouter)
+app.use("/", userRouter)
+
+
+
+
+
+
+
+
  
 
 
-// Required WrapAsync
-const WrapAsync = require("./util/WrapAsync.js");
 
-//  Required Express Error which handle mongoose error
-const ExpressError = require("./util/ExpressError.js")
+
+
+
+
+
 
 
 main().then(()=>{
@@ -50,109 +125,33 @@ app.get("/", (req, res )=>{
     res.send("working");
 })
 
-// app.get("/sampledata", async (req, res)=>{
-//     const data1 =  new Listing({
-//         title : "House on sold",
-//         description: "sweet home",
-//         price: 6000,
-//         location: "Basti",
-//         country: "India"
-//     })
-//     await data1.save();
-//     res.send("it working")
-// })
-
-//  go to create new listing route
-app.get("/listing/new", (req, res)=>{
-    res.render("new.ejs");
-})
-
-// editing the listing
-app.put("/listing/:id", WrapAsync( async (req, res)=>{
-    let {id} = req.params;
- 
-    // const {title, image, description, price, location, country} = req.body;
-    const listing = req.body.listing;
-    
-
-    // await Listing.findByIdAndUpdate(id,{title, image, description, price, location, country}, {new : true});
-    await Listing.findByIdAndUpdate(id, req.body.listing, {new : true});
-    res.redirect(`/listing/${id}`)
-}))
-
-//  deleting the list
-app.delete("/listing/:id/delete",WrapAsync( async (req, res)=>{
-    let{id} = req.params;
-    await Listing.findByIdAndDelete(id);
-    res.redirect(`/listing`);
-}))
-
-// show listing route 
-app.get("/listing/:id", WrapAsync(async (req, res)=>{
-    let {id} = req.params;
-    let list =  await Listing.findById(id);
-   
-    res.render("show.ejs", {list})
-}))
-
-// create new listing  route 
-app.post("/listing", WrapAsync( async (req, res)=>{   
-    
-    // let {n_title, n_description , n_price , n_image, n_location, n_country} = req.body;
-
-    if(!req.body.listing){
-        throw new ExpressError (404, "Send invalid data for listing")
-    }
-    let newlisting = new Listing(req.body.listing);
-
-    // const new_listing = new Listing({
-    //     title : n_title,
-    //     description : n_description,
-    //     price : n_price,
-    //     image: n_image,
-    //     location : n_location,
-    //     country : n_country
-
-    // })
-   
-    await newlisting.save();
-    res.redirect("/listing")
-}))
-
-// edit form route
-app.get("/listing/:id/edit",WrapAsync( async (req, res)=>{
-    let {id} = req.params;   
-    let data =  await Listing.findById(id);
-    res.render("editform.ejs", {data})
-
-}))
 
 
 
 
-//  LIsting route
-app.get("/listing",WrapAsync( async (req, res )=>{
-    const data = await Listing.find({})
-     
-    
-    res.render("listing.ejs", {data})
-}))
+
+ const ExpressError = require("./util/ExpressError");
+const { sign } = require("crypto");
 
 
 // handle General Error in from sever side.
 
-app.use((err, req, res ,next)=>{
-    res.send("Something went Wrong");
-})
+// app.use((err, req, res ,next)=>{
+//     res.send("Something went Wrong");
+// })
 
-
+app.use((req, res, next) => {
+  next(new ExpressError(404, "Page Not Found"));
+});
  
 
 //  handle expresserror class for mongosh error
 app.use((err, req, res, next)=>{
     let{status = 500, message = "Something went wrong!"} = err;
-    res.status(status).send(message);
+    res.render("Error.ejs", {err});
+    // res.status(status).send(message);
 })
+
 
 
 

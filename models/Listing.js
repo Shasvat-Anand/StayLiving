@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {Schema} = mongoose;
 
 const ListingSchema = new mongoose.Schema({
     title: {
@@ -26,8 +27,14 @@ const ListingSchema = new mongoose.Schema({
     },
     country: {
         type: String
-    }
+    },
 
+    reviews : [
+        {
+            type : Schema.Types.ObjectId,
+            ref : "Review"  // name of the model which we want to refer to
+        }
+    ]
 
 
 })

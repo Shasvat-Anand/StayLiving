@@ -1,0 +1,32 @@
+ <% layout("/Layouts/boilerplate") %>
+
+ <body>
+    <div class="container">
+        <div class="signup-conatiner mt-4">
+            <h2>Signing up On StayLiving</h2>
+            <form action="/signup" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3 mt-5 signup-page  col-6 offset-3">
+
+                <label for="username" class="form-label ">Username</label>
+                <input type="text" name="listing[username]" class="form-control mb-2" id="username" required placeholder="Enter Username">
+                <div class="invalid-feedback">Enter valid name </div>
+
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="listing[email]" class="form-control mb-2" id="email" required  placeholder="Enter Email">
+                <div class="invalid-feedback">Enter valid email</div>
+
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="listing[password]" class="form-control " id="password" required  placeholder="Enter Password">
+                <div class="invalid-feedback">Enter valid password</div>
+                   
+                <div class="signupbtn">
+
+                    <button class="btn btn-success mt-3  w-100">Sign up</button>
+                </div>
+                
+                </div>
+
+            </form>
+        </div>
+    </div>
+ </body>
