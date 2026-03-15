@@ -32,7 +32,7 @@ module.exports.isOwner = async(req, res, next)=>{
 
     let listings = await Listing.findById(id);
     if(!listings.owner._id.equals(res.locals.currUser._id)){
-        req.flash("error", "You don have permission to change the Listing")
+        req.flash("error", "You don't have permission to change the Listing")
         return res.redirect(`/listing/${id}`);
     }
 
@@ -74,7 +74,7 @@ module.exports.isReviewAuthor= async(req, res, next)=>{
     let Reviews = await Review.findById(reviewid);
     console.log(Reviews)
     if(!Reviews.author.equals(res.locals.currUser._id)){
-        req.flash("error", "You don have permission to change the Review")
+        req.flash("error", "You don't have permission to change the Review")
         return res.redirect(`/listing/${id}`);
     }
 
