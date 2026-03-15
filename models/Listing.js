@@ -34,7 +34,11 @@ const ListingSchema = new mongoose.Schema({
             type : Schema.Types.ObjectId,
             ref : "Review"  // name of the model which we want to refer to
         }
-    ]
+    ],
+    owner :{
+        type : Schema.Types.ObjectId,
+        ref:"User"
+    }
 
 
 })

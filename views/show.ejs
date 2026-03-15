@@ -5,7 +5,7 @@
 
         <div class="row mt-3 d-flex justify-content-center align-item-center">
             <h3>
-                <%= list.title %>
+                <%= list.owner.username %>
             </h3>
             <div class="mb-3 col-6   ">
                 <img src="<%= list.image %>" class="img-fluid rounded-3 " alt="ListImage">
@@ -33,46 +33,56 @@
             </li>
         </ul>
 
-        <div class="row mb-3 d-flex justify-content-between items-center">
 
-            <form action="/listing/<%= list._id %>/edit" class="col-auto">
-                <button class="btn btn-dark">Edit</button>
-            </form>
+       
+        <% if(currUser && (currUser._id.equals(list.owner._id)) ){ %>
 
-            <form action="/listing/<%= list._id %>/delete?_method=DELETE" method="post" class="col-auto">
-                <button class="btn btn-danger">Delete</button>
-            </form>
+            
+            <div class="row mb-3 d-flex justify-content-between items-center">
+                
+                <form action="/listing/<%= list._id %>/edit" class="col-auto">
+                    <button class="btn btn-dark">Edit</button>
+                </form>
+                
+                <form action="/listing/<%= list._id %>/delete?_method=DELETE" method="post" class="col-auto">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                
+            </div>
+            <% } %>
 
-        </div>
+           
 
+        <% if(currUser){ %>
 
-        <div class="list-group m-5 p-2   ">
-            <div class="row   list-group-item shadow-lg mb-4 ">
-                <h3>Reviews</h3>
+            <div class="list-group m-5 p-2   ">
+                <div class="row   list-group-item shadow-lg mb-4 ">
+                    <h3>Reviews</h3>
                 <form action="/listing/<%= list._id %>/review" method="post" novalidate
                     class="needs-validation d-flex flex-column align-item-center">
                     <div class="d-flex  align-item-center gap-5  mt-4  w-full bg-green-400">
                         <label for="rating" class="text-lg block bg-green-400">Rating Star</label>
-                        <input type="number" min="1" max="5" name="review[rating]" placeholder="5" id="rating">
+                        <input type="number" min="1" max="5" name="review[rating]" value="5" placeholder="5" id="rating">
                         <div class="invalid-feedback w-50 mx-5 ">Rate upto 5 star</div>
                     </div>
                     <div class='row  rounded-full mt-3 mb-3 '>
                         <label for="review" class="form mb-1 mt-3 form-label">Write your thought</label>
                         <textarea name="review[comment]" class="textarea p-2  m-2 form-control" required id="comment"
-                            rows="2" cols="20"></textarea>
+                        rows="2" cols="20"></textarea>
                         <div class="invalid-feedback">Write something</div>
-                    </div>
-
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary"> Submit</button>
-                    </div>
-
-
-
-                </form>
-            </div>
-
+                        </div>
+                        
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary"> Submit</button>
+                            </div>
+                            
+                            
+                            
+                            </form>
+                            </div>
+                            
         </div>
+                       <% } %>
 
 
 
@@ -88,6 +98,7 @@
                     <div class="card-body d-flex justify-content-between align-items-center">
 
                         <div>
+                            <h5><i class="fa-solid fa-circle-user"></i> <%=review.author.username%> </h5>
                             <p class="card-text mb-2">
                                 <%= review.comment %>
                             </p>

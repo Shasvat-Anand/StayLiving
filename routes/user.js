@@ -8,6 +8,8 @@ const User = require("../models/User");
 const passport = require("passport");
 const WrapAsync = require("../util/WrapAsync");
 
+const { saveRedirectUrl } = require("../middleware");
+
 
 router.get("/signup", (req, res)=>{
     res.render("signup.ejs")
@@ -47,6 +49,7 @@ router.get("/login", (req, res)=>{
 
 router.post(
     "/login",
+    saveRedirectUrl,
     passport.authenticate("local", {
         failureRedirect: "/login",
         failureFlash: true
@@ -54,7 +57,8 @@ router.post(
     (req, res) => {
         
         req.flash("success", "Welcome back!");
-        res.redirect("/listing");
+        let redirectUrl = res.locals.redirectUrl || "/listing"
+        res.redirect(redirectUrl);
     }
 );
 

@@ -7,13 +7,24 @@ const Review = require("../models/Review")
 const Listing = require("../models/Listing");
 const WrapAsync = require("../util/WrapAsync");
 
+const {validateReview, isLoggedIn, isReviewAuthor} = require("../middleware")
+
+
+
+// const { reviewSchema } = require("../Schema");
+// const ExpressError = require("../util/ExpressError");
+
+
+
+// module.exports = validateReview;
+
 
 
 
 
 //  Review route 
 
- router.post("/", async(req, res)=>{
+ router.post("/", isLoggedIn, validateReview, async(req, res)=>{
     let {rating  , comment } = req.body.review;
 
     if(!rating){
@@ -33,6 +44,9 @@ const WrapAsync = require("../util/WrapAsync");
      
     let currlisting = await Listing.findById(id);
 
+    new_review.author = req.user._id;
+    console.log(new_review)
+
     currlisting.reviews.push(new_review)
 
     await new_review.save();
@@ -43,7 +57,7 @@ const WrapAsync = require("../util/WrapAsync");
 })
 
 
-router.delete("/:reviewid", WrapAsync(async (req, res) => {
+router.delete("/:reviewid",isReviewAuthor, WrapAsync(async (req, res) => {
     const { id, reviewid } = req.params;
 
     

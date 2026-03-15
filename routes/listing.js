@@ -4,11 +4,11 @@ const router = express.Router();
 
 const Listing = require("../models/Listing")
 
-const {listingSchema} = require("../Schema.js")
+ 
 const ejs = require("ejs");
 
 
-const {isLoggedIn} = require("../middleware.js")
+const {isLoggedIn, isOwner, validateListing} = require("../middleware.js")
 
 
 
@@ -16,21 +16,12 @@ const {isLoggedIn} = require("../middleware.js")
 // Required WrapAsync
 const WrapAsync = require("../util/WrapAsync.js");
 
-//  Required Express Error which handle mongoose error
-const ExpressError = require("../util/ExpressError.js")
+
+ 
 
 
 //  Validation with Joi
-const validateListing = (req, res, next)=>{
-    let {error} = listingSchema.validate(req.body);
-    if(error){
-        let msg = error.details.map((el)=> el.message).join(",");
-        throw new ExpressError(400, msg);
-    }
-    else{
-        next();
-    }
-}
+
 
 
 
@@ -44,6 +35,8 @@ router.post("/",validateListing, WrapAsync( async (req, res, next)=>{
         throw new ExpressError (404, "Send invalid data for listing")
     }
     let new_listing = new Listing(req.body.listings);
+
+    new_listing.owner = req.user._id;
 
     // const new_listing = new Listing({
     //     title : n_title,
@@ -79,11 +72,13 @@ router.get("/new", isLoggedIn, (req, res)=>{
 
 
 // editing or updating the listing
-router.put("/:id", isLoggedIn, WrapAsync( async (req, res)=>{
+router.put("/:id", isLoggedIn, isOwner, WrapAsync( async (req, res)=>{
     let {id} = req.params;
  
     // const {title, image, description, price, location, country} = req.body;
     const listing = req.body.listing;
+
+   
     
 
     // await Listing.findByIdAndUpdate(id,{title, image, description, price, location, country}, {new : true});
@@ -95,7 +90,7 @@ router.put("/:id", isLoggedIn, WrapAsync( async (req, res)=>{
 
 
 //  deleting the list
-router.delete("/:id/delete",isLoggedIn  , WrapAsync( async (req, res)=>{
+router.delete("/:id/delete",isLoggedIn , isOwner , WrapAsync( async (req, res)=>{
     let{id} = req.params;
     await Listing.findByIdAndDelete(id);
     req.flash("success", "Listing Deleted")
@@ -105,13 +100,13 @@ router.delete("/:id/delete",isLoggedIn  , WrapAsync( async (req, res)=>{
 // show listing route 
 router.get("/:id", WrapAsync(async (req, res)=>{
     let {id} = req.params;
-    let list =  await Listing.findById(id).populate("reviews");
+    let list =  await Listing.findById(id).populate({path:"reviews", populate:{path : "author"}}).populate("owner");
 
     if(!list){
         req.flash("error", "Listing you requested for does not exist!");
         return res.redirect("/listing")
     }
-    // console.log(list)
+    console.log(list)
    
     res.render("show.ejs", {list})
 }))
@@ -120,7 +115,7 @@ router.get("/:id", WrapAsync(async (req, res)=>{
 
 
 // edit form route
-router.get("/:id/edit", isLoggedIn, WrapAsync( async (req, res)=>{
+router.get("/:id/edit", isLoggedIn, isOwner, WrapAsync( async (req, res)=>{
     let {id} = req.params;   
     let data =  await Listing.findById(id);
     
