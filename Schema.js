@@ -6,7 +6,15 @@ module.exports.listingSchema = Joi.object({
         description : Joi.string().required(),
         location : Joi.string().required(),
         country : Joi.string().required(),
-        price: Joi.number().required().min(0),
+        bedtype : Joi.string().required(),
+        hosteltype : Joi.string().required(),
+        bathroom : Joi.string().required(),
+        roomtype : Joi.string().required(),
+        contact: Joi.string().required().length(10).pattern(/^[0-9]{10}$/),
+        alternatecontact: Joi.string().required().length(10).pattern(/^[0-9]{10}$/),
+        singleprice: Joi.number().required().min(0),
+        doubleprice: Joi.number().required().min(0),
+        tripleprice: Joi.number().required().min(0),
         image : Joi.string().allow("", null)
     }).required(),
 })

@@ -5,7 +5,7 @@
 
         <div class="row mt-3 d-flex justify-content-center align-item-center">
             <h3>
-                <!-- <%= list.owner.username %> -->
+                <%= list.owner.username %>
             </h3>
             <div class="mb-3 col-6   ">
                 <img src="<%= list.image %>" class="img-fluid rounded-3 " alt="ListImage">
@@ -15,20 +15,53 @@
 
         <ul class="list-group shadow-lg rounded-3 mb-3 mt-3">
             <li class="list-group-item fw-bold fs-5">
-                <%= list.title %>
+              <label> Hostel Name : </label>  <%= list.title %>
             </li>
 
             <li class="list-group-item text-muted">
-                <%= list.description %>
+               <label >Facility Provide : </label> <%= list.description %>
             </li>
+            <li class="list-group-item text-muted">
+               <label >Hostel Type : </label>   <%= list.hosteltype %>
+            </li>
+            <li class="list-group-item text-muted">
+              <label > Room Type : </label><%= list.roomtype %>
+            </li>
+            <li class="list-group-item text-muted">
+             <label >Bed Type : </label>  <%= list.bedtype %>
+            </li>
+            <li class="list-group-item text-muted">
+             <label > BathRoom Type : </label>  <%= list.bathroom %>
+            </li>
+            <li class="list-group-item text-muted">
+             <label > Contact : </label>  <%= list.contact %>  |  <%= list.alternatecontact %>
+            </li>
+            
+            
+            <%if(list.singleprice != 0){ %>
 
-            <li class="list-group-item text-success fw-semibold">
-                ₹ <%= list.price.toLocaleString("en-IN") %>
-                    <!-- ₹ <%= list.price %> -->
-            </li>
+                <li class="list-group-item text-success fw-semibold">
+                    
+                    <label > Single Bed Price</label> ₹ <%=  list.singleprice %>
+                </li>
+            <%} %>
+            <%if(list.doubleprice != 0){ %>
+
+                <li class="list-group-item text-success fw-semibold">
+                    
+                    <label > Double Bed Price</label> ₹ <%=  list.doubleprice %>
+                </li>
+            <%} %>
+            <%if(list.tripleprice != 0){ %>
+
+                <li class="list-group-item text-success fw-semibold">
+                    
+                    <label >Triple Bed Price</label> ₹ <%=  list.tripleprice %>
+                </li>
+            <%} %>
 
             <li class="list-group-item">
-                📍 <%= list.location %>, <%= list.country %>
+               <label >Location</label>  📍 <%= list.location %>, <%= list.country %>
 
             </li>
         </ul>

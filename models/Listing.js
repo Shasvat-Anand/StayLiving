@@ -18,8 +18,40 @@ const ListingSchema = new mongoose.Schema({
                 ? "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg"
                 : v
     },
-    price: {
+    singleprice: {
         type: Number,
+        require: true
+    },
+    doubleprice: {
+        type: Number,
+        require: true
+    },
+    tripleprice: {
+        type: Number,
+        require: true
+    },
+    bedtype:{
+        type: String,
+        require : true
+    }, 
+    hosteltype:{
+        type: String,
+        require : true
+    }, 
+    roomtype:{
+        type: String,
+        require : true
+    }, 
+    bathroom:{
+        type: String,
+        require : true
+    }, 
+    contact:{
+        type : String,
+        require: true
+    }, 
+    alternatecontact:{
+        type: String,
         require: true
     },
     location: {

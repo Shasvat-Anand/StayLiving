@@ -33,7 +33,7 @@ module.exports.createNewListing = async (req, res, next)=>{
 
     // })
 
-    // console.log(new_listing);
+    console.log(new_listing);
    
     await new_listing.save();
     req.flash("success", "New listing is created")
@@ -48,7 +48,7 @@ module.exports.showListing = async (req, res)=>{
         req.flash("error", "Listing you requested for does not exist!");
         return res.redirect("/listing")
     }
-    console.log(list)
+    // console.log(list)
    
     res.render("show.ejs", {list})
 };

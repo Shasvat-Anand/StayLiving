@@ -1,51 +1,136 @@
- 
-    <% layout("/Layouts/boilerplate")  %>
-<body>
-    <h1>Create new List</h1>
-    <form action="/listing" method="post"  class="needs-validation" novalidate >
+<% layout("/Layouts/boilerplate") %>
 
-        <div class="mb-3">
-            <label  for="title" class="form-label">Title</label>
-            <input type="text" id="title" name="listings[title]" required class="form-control" placeholder="Enter Title">
-            <div class="valid-feedback">Looks Good</div>
-           
-        </div>
+    <body>
+        <h1>Create new List</h1>
+        <form action="/listing" method="post" class="needs-validation" novalidate>
 
-       
-        <div class="mb-3">
-            <label  for="description" class="form-label">Description</label>
-            <textarea id="Description" name="listings[description]" required class="form-control textarea" placeholder="Description here"></textarea>
-            <div class="invalid-feedback">Please enter short Description</div>
-        </div>
-         <div class="mb-3">
-            <label for="image"  class="form-label">Image</label>
-            <input type="text" id="Image" name="listings[image]" class="form-control" placeholder="Enter link/url">
-        </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="listings[title]" required class="form-control"
+                    placeholder="Enter Name of Hostel">
+                <div class="valid-feedback">Looks Good</div>
 
-
-        <div class="row">
-
-            <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-                <label for="price"  class="form-label">Price</label>
-                <input type="number" id="Price" name="listings[price]" required class="form-control" placeholder="Enter Price">
-                <div class="invalid-feedback">Please enter Price</div>
             </div>
-            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="location" class="form-label">Location</label>
-                
-                <input type="text" id="Location"  name="listings[location]" required class="form-control" placeholder="Enter location">
-                <div class="invalid-feedback">Please enter Location</div>
-            </div>
-        </div>
-        
-        <div class="mb-3">
-             <label for="country"   class="form-label">Country</label>
 
-             <input type="text" id="Country" name="listings[country]" required class="form-control" placeholder="Enter Country">
-             <div class="invalid-feedback">Please enter Country</div>
-         </div>
-         
-        <button class="btn btn-dark" type="submit">Create New</button>
-    </form>
-</body>
- 
+
+
+
+
+
+
+            <div class="row">
+
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="hosteltype" class="form-label">Hostel Type</label>
+                    <input type="text" id="hosteltype" name="listings[hosteltype]" required class="form-control"
+                        placeholder="Boys / Girls">
+                    <div class="invalid-feedback">Please enter HostelType</div>
+                </div>
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="roomtype" class="form-label">Room Type</label>
+
+                    <input type="text" id="roomtype" name="listings[roomtype]" required class="form-control"
+                        placeholder="Ac / Non-Ac">
+                    <div class="invalid-feedback">Please enter Room Type</div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="bedtype" class="form-label">Bed Type</label>
+
+                    <input type="text" id="bedtype" name="listings[bedtype]" required class="form-control"
+                        placeholder="Single / Double / Triple">
+                    <div class="invalid-feedback">Please enter Bed Type</div>
+                </div>
+
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="bathroom" class="form-label">BathRoom Type</label>
+                    <input type="text" id="bathroom" name="listings[bathroom]" required class="form-control"
+                        placeholder="Attached / Common">
+                    <div class="invalid-feedback">Please enter BathRoom Type</div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="singleprice" class="form-label"> Single Bed Price</label>
+                    <input type="number" id="singleprice" name="listings[singleprice]" required class="form-control"
+                        placeholder="if not fill NA">
+                    <div class="invalid-feedback">Please enter Price</div>
+                </div>
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="doubleprice" class="form-label">Double Bed Price</label>
+                    <input type="number" id="doubleprice" name="listings[doubleprice]" required class="form-control"
+                        placeholder="if not fill NA">
+                    <div class="invalid-feedback">Please enter Price</div>
+                </div>
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="tripleprice" class="form-label">Triple Bed Price</label>
+                    <input type="number" id="tripleprice" name="listings[tripleprice]" required class="form-control"
+                        placeholder="if not fill NA">
+                    <div class="invalid-feedback">Please enter Price</div>
+                </div>
+
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="contact" class="form-label">
+                        Contact Number <span class="text-danger">*</span>
+                    </label>
+                    <input type="tel" id="contact" name="listings[contact]" required class="form-control"
+                        placeholder="Enter 10-digit mobile number" maxlength="10" pattern="[6-9]\d{9}"
+                        onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <small class="text-muted">Must be exactly 10 digits &amp; start with 6-9 (e.g. 9876543210)</small>
+                    <div class="invalid-feedback">Please enter a valid 10-digit contact number</div>
+                </div>
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="alternatecontact" class="form-label">
+                        Alternate Number <span class="text-danger">*</span>
+                    </label>
+                    <input type="tel" id="alternatecontact" name="listings[alternatecontact]" required
+                        class="form-control" placeholder="Enter 10-digit mobile number" maxlength="10"
+                        pattern="[6-9]\d{9}" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <small class="text-muted">Must be exactly 10 digits &amp; start with 6-9 (e.g. 9876543210)</small>
+                    <div class="invalid-feedback">Please enter a valid 10-digit alternate number</div>
+                </div>
+
+
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="location" class="form-label">Location</label>
+
+                    <input type="text" id="Location" name="listings[location]" required class="form-control"
+                        placeholder="Enter Full location">
+                    <div class="invalid-feedback">Please enter Location</div>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+
+                <input type="text" id="Country" name="listings[country]" required class="form-control"
+                    placeholder="Enter Country">
+                <div class="invalid-feedback">Please enter Country</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="Description" name="listings[description]" required class="form-control textarea"
+                    placeholder="Add Every thing you provide with ( ' | ' ) "></textarea>
+                <div class="invalid-feedback">Please enter short Description</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image</label>
+                <input type="file" id="Image" name="listings[image]" class="form-control" placeholder="Enter link/url">
+            </div>
+
+
+            <button class="btn btn-dark" type="submit">Create New</button>
+        </form>
+    </body>
