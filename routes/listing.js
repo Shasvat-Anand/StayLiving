@@ -18,24 +18,18 @@ const controlListing = require("../controller/listing.js")
 const WrapAsync = require("../util/WrapAsync.js");
 
 
+router.route("/")
+.get(WrapAsync(controlListing.index))
+.post(validateListing, WrapAsync(controlListing.createNewListing))
+
  
 
 
  //  LIsting route index route 
-router.get("/",WrapAsync(controlListing.index))
-
-
-
+// router.get("/",WrapAsync(controlListing.index))
 
 // create new listing  route 
-router.post("/",validateListing, WrapAsync( controlListing.createNewListing))
-
-
-
-
-
-
-
+// router.post("/",validateListing, WrapAsync( controlListing.createNewListing))
 
 
 
@@ -44,16 +38,20 @@ router.get("/new", isLoggedIn, controlListing.renderNewListingForm)
 
 
 
-// editing or updating the listing
-router.put("/:id", isLoggedIn, isOwner, WrapAsync( controlListing.updateListing))
+router.route("/:id")
+.put(isLoggedIn, isOwner, WrapAsync(controlListing.updateListing))
+.get(WrapAsync(controlListing.showListing))
 
+// editing or updating the listing
+// router.put("/:id", isLoggedIn, isOwner, WrapAsync( controlListing.updateListing))
+
+// show listing route 
+// router.get("/:id", WrapAsync(controlListing.showListing))
 
 
 //  deleting the list
 router.delete("/:id/delete",isLoggedIn , isOwner , WrapAsync( controlListing.destroy))
 
-// show listing route 
-router.get("/:id", WrapAsync(controlListing.showListing))
 
 
 
