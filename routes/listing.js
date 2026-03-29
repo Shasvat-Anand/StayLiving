@@ -24,6 +24,10 @@ router.route("/")
 
  
 
+router.get("/mylisting", isLoggedIn,  WrapAsync(controlListing.mycard));
+
+router.get("/mylisting/:id", isLoggedIn, WrapAsync(controlListing.showListing));
+
 
  //  LIsting route index route 
 // router.get("/",WrapAsync(controlListing.index))

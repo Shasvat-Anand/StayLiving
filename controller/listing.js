@@ -7,6 +7,20 @@ module.exports.index = async (req, res )=>{
 };
 
 
+module.exports.mycard = async(req, res)=> {
+ 
+    const curr = res.locals.currUser;
+ 
+    console.log(curr._id);
+    
+    const data = await Listing.find({ owner: curr._id });
+    console.log(data);
+    res.render("mylisting.ejs", {data});
+ 
+    
+};
+
+
 module.exports.renderNewListingForm = (req, res)=>{
     res.render("new.ejs");
 };

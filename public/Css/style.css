@@ -34,6 +34,8 @@ body{
     align-items: center;
     justify-content: center;
     background-color: azure;
+
+    margin-top: 5rem;
      
 
  
@@ -80,6 +82,7 @@ body{
 }
 .card-image{
     border-radius: 1rem;
+    padding: 10px;
     width: 100%;
     object-fit: cover;
 }

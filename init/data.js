@@ -2,7 +2,7 @@ const properties = [
 {
   title: "Sunrise Boys Hostel",
   description: "wifi | transport | 4 meals | laundry twice a week",
-  image: "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg",
+  image: "https://i.pinimg.com/736x/90/e8/a8/90e8a803638554372c911f5031091eeb.jpg",
   singleprice: 16000,
   doubleprice: 14500,
   tripleprice: 13500,
@@ -36,7 +36,7 @@ const properties = [
 {
   title: "Sea Breeze Hostel",
   description: "wifi | sea view | meals 3 time | parking",
-  image: "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg",
+  image: "https://i.pinimg.com/736x/90/e8/a8/90e8a803638554372c911f5031091eeb.jpg",
   singleprice: 25000,
   doubleprice: 20000,
   tripleprice: 15000,
@@ -70,7 +70,7 @@ const properties = [
 {
   title: "Mumbai Luxury Hostel",
   description: "wifi | gym | meals 4 time | security",
-  image: "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg",
+  image: "https://i.pinimg.com/736x/90/e8/a8/90e8a803638554372c911f5031091eeb.jpg",
   singleprice: 50000,
   doubleprice: 42000,
   tripleprice: 35000,
@@ -87,7 +87,7 @@ const properties = [
 {
   title: "Himalayan Cozy Hostel",
   description: "wifi | heater | mountain view",
-  image: "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg",
+  image: "https://i.pinimg.com/736x/90/e8/a8/90e8a803638554372c911f5031091eeb.jpg",
   singleprice: 17000,
   doubleprice: 16000,
   tripleprice: 15000,
@@ -121,7 +121,7 @@ const properties = [
 {
   title: "Delhi Student Hostel",
   description: "wifi | study room | meals 3 time",
-  image: "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg",
+  image: "https://i.pinimg.com/736x/90/e8/a8/90e8a803638554372c911f5031091eeb.jpg",
   singleprice: 18000,
   doubleprice: 16500,
   tripleprice: 15000,
@@ -138,7 +138,7 @@ const properties = [
 {
   title: "Heritage Jaipur Hostel",
   description: "wifi | traditional design | meals included",
-  image: "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg",
+  image: "https://i.pinimg.com/736x/90/e8/a8/90e8a803638554372c911f5031091eeb.jpg",
   singleprice: 100000,
   doubleprice: 18000,
   tripleprice: 16000,

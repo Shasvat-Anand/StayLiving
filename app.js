@@ -25,6 +25,9 @@ const mongoose = require("mongoose");
 
 
 
+ 
+
+
 
 
 //  flash 
@@ -92,6 +95,8 @@ app.use("/listing", listingRouter)
 app.use("/listing/:id/review", reviewRouter)
 app.use("/", userRouter)
 
+ 
+
 
 
 
@@ -132,6 +137,7 @@ app.get("/", (req, res )=>{
 
  const ExpressError = require("./util/ExpressError");
 const { sign } = require("crypto");
+const { isOwner } = require("./middleware");
 
 
 // handle General Error in from sever side.

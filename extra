@@ -1,0 +1,20 @@
+  <!-- <% if (item.singleprice !=0) { %>
+                <p>
+                   ₹ <%= item.singleprice.toLocaleString('en-IN') %>/ Year
+                   ₹ <%= item.singleprice  %>/ Year
+                </p>
+                <% } %>
+
+                  <% if (item.doubleprice !=0) { %>
+                    <p>
+                      ₹  <%= item.doubleprice.toLocaleString('en-IN')  %>/ Year
+                      ₹  <%= item.doubleprice %>/ Year
+                    </p>
+                    <% } %>
+
+                      <% if (item.tripleprice !=0) { %>
+                        <p>
+                          ₹  <%= item.tripleprice.toLocaleString('en-IN') %>/ Year
+                          ₹  <%= item.tripleprice%>/ Year
+                        </p>
+                        <% } %> -->
