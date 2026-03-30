@@ -14,15 +14,20 @@ body{
 .navbar{
     height: 5rem;
     font-size: 1rem;
+    
 }
 .nav-link{
     font-weight: 700 !important;
     color: black !important;
     font-family: "Lato", sans-serif;
 }
-.navbar-brand{
-    color: rgb(132, 0, 165) !important;
-    font-size: 2rem;
+.navbar-brand {
+    font-size: 1.5rem;
+    /* background: linear-gradient(135deg, #56AB2F, #A8E063); */
+    background:linear-gradient(135deg, #36D1DC, #5B86E5);
+    /* background:linear-gradient(135deg, #FF8008, #FFC837); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* footer Style */

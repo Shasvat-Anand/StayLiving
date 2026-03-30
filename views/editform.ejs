@@ -15,37 +15,120 @@
                 <input type="text" name="listing[title]" class="form-control" id="title" required  value="<%= data.title %>">
                 <div class="valid">Looks Good</div>
             </div>
+            
+            <div class="row">
+
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="hosteltype" class="form-label">Hostel Type</label>
+                    <input type="text" id="hosteltype" name="listing[hosteltype]" required class="form-control"
+                        value="<%= data.hosteltype  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="roomtype" class="form-label">Room Type</label>
+
+                    <input type="text" id="roomtype" name="listing[roomtype]" required class="form-control"
+                         value="<%= data.roomtype  %>">
+                    <div class="invalid-feedback">Looks Good </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="bedtype" class="form-label">Bed Type</label>
+                    <input type="text" id="bedtype" name="listing[bedtype]" required class="form-control"
+                        value="<%= data.bedtype  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="bathroom" class="form-label">BathRoom Type</label>
+
+                    <input type="text" id="bathroom" name="listing[bathroom]" required class="form-control"
+                         value="<%= data.bathroom  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                    <label for="singleprice" class="form-label">Single Bed Price</label>
+                    <input type="text" id="singleprice" name="listing[singleprice]" required class="form-control"
+                        value="<%= data.singleprice  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="doubleprice" class="form-label">Double Bed Price</label>
+
+                    <input type="text" id="doubleprice" name="listing[doubleprice]" required class="form-control"
+                         value="<%= data.doubleprice  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="tripleprice" class="form-label">Triple Bed Price</label>
+
+                    <input type="text" id="tripleprice" name="listing[tripleprice]" required class="form-control"
+                         value="<%= data.tripleprice  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="contact" class="form-label">Contact No</label>
+
+                    <input type="text" id="contact" name="listing[contact]" required class="form-control"
+                         value="<%= data.contact %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="alternatecontact" class="form-label">Alternate No.</label>
+
+                    <input type="text" id="alternatecontact" name="listing[alternatecontact]" required class="form-control"
+                         value="<%= data.alternatecontact  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+
+                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                    <label for="location" class="form-label">Location</label>
+
+                    <input type="text" id="location" name="listing[location]" required class="form-control"
+                         value="<%= data.location  %>">
+                    <div class="valid">Looks Good</div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" name="listing[country]" class="form-control" id="country" required  value="<%= data.country %>">
+                <div class="valid">Please enter country</div>
+            </div>
+
              <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea type="text" id="description" name="listing[description]" required class="form-control textarea" ><%= data.description %></textarea>
                 <div class="valid">Please Enter short description</div>
             </div>
+
+
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
                 <input type="text" id="Image" name="listing[image]" class="form-control" required  value="<%= data.image %>">
                 <div class="valid">Please enter image url</div>
             </div>
 
-            <div class="row  ">
-                                    
-                    <div class="mb-3 col-lg-6 col-md-6  col-sm-12">
-                        <label for="price" class="form-label">Price</label>
-                        <input type="number" name="listing[price]" id="price" class="form-control" required  value="<%= data.price %>">
-                        <div class="valid">Please enter price</div>
-                    </div>
-                    
-                    <div class="mb-3 col-lg-6 col-md-6  col-sm-12">
-                        <label for="location" class="form-label">Location</label>
-                        <input type="text" name="listing[location]" id="location" class="form-control" required  value="<%= data.location %>">
-                        <div class="valid">Please enter location</div>
-                    </div>
-                
-            </div>
-            <div class="mb-3">
-                <label for="country" class="form-label">Country</label>
-                <input type="text" name="listing[country]" class="form-control" id="country" required  value="<%= data.country %>">
-                <div class="valid">Please enter country</div>
-            </div>
+ 
 
 
 
