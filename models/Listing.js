@@ -10,14 +10,19 @@ const ListingSchema = new mongoose.Schema({
     description: {
         type: String,
     },
-    image: {
-        type: String,
-        default: "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg",
-        set: (v) =>
-            v === ""
-                ? "https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg"
-                : v
-    },
+    image: [
+        {
+            url :{
+                type:String,
+                
+            },
+            filename:{
+                type: String,
+            },
+        },
+    ],
+         
+  
     singleprice: {
         type: Number,
         require: true

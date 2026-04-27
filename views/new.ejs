@@ -2,7 +2,7 @@
 
     <body>
         <h1>Create new List</h1>
-        <form action="/listing" method="post" class="needs-validation" novalidate>
+        <form action="/listing" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
@@ -127,7 +127,8 @@
 
             <div class="mb-3">
                 <label for="image" class="form-label">Upload Image</label>
-                <input type="file" id="Image" name="listings[image]" class="form-control" placeholder="Enter link/url">
+                  <small class="text-muted">For multiple Images use(Ctrl + shift ) to select them </small>
+                <input type="file" id="Image" name="listings[image]" accept="image/*" multiple class="form-control" placeholder="Enter link/url">
             </div>
 
 

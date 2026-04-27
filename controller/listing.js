@@ -37,15 +37,21 @@ module.exports.createNewListing = async (req, res, next)=>{
 
     new_listing.owner = req.user._id;
 
-    // const new_listing = new Listing({
-    //     title : n_title,
-    //     description : n_description,
-    //     price : n_price,
-    //     image: n_image,
-    //     location : n_location,
-    //     country : n_country
+    if (req.files && req.files.length > 0) {
+        new_listing.image = req.files.map(file => ({
+            url: file.path,        // Cloudinary URL
+            filename: file.filename // public_id
+        }));
+    } else {
+        // Optional default image
+        new_listing.image = [{
+            url: "https://i.pinimg.com/736x/ea/4c/da/ea4cdacc7cf0ac485a4a0589baf4df8b.jpg",
+            filename: "default"
+        }];
+    }
 
-    // })
+
+  
 
     console.log(new_listing);
    

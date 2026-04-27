@@ -2,6 +2,13 @@ const express = require("express");
 
 const router = express.Router();
 
+// multer for multi-form data 
+const multer = require("multer");
+const {storage} = require("../cloudConfig.js")
+const upload = multer({storage})
+
+
+
 const Listing = require("../models/Listing")
 
  
@@ -20,7 +27,11 @@ const WrapAsync = require("../util/WrapAsync.js");
 
 router.route("/")
 .get(WrapAsync(controlListing.index))
-.post(validateListing, WrapAsync(controlListing.createNewListing))
+.post(isLoggedIn,  upload.array('listings[image]', 10),  WrapAsync(controlListing.createNewListing))
+ 
+// .post(upload.array('listings[image]', 10), (req, res)=>{
+//     res.send(req.files);
+// })
 
  
 

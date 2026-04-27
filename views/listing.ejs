@@ -12,7 +12,10 @@
           <div class="card h-100 mt-1 ">
 
             <div class="card-img-overlay  d-flex flex-column justify-content-end "></div>
-            <img src="<%= item.image %>" class="card-img-top card-image" style="height: 18rem;" alt="Listing_image">
+            <img  src="<%= item.images && item.images.length > 0 
+        ? item.images[0].url 
+        : 'https://i.pinimg.com/736x/3c/d6/b0/3cd6b0a044375c3a1b9da0a8c04e91dd.jpg' %>"
+         class="card-img-top card-image" style="height: 18rem;" alt="Listing_image">
             <div class="card-body ">
 
               <h5 class="card-title">

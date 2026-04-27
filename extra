@@ -18,3 +18,22 @@
                           ₹  <%= item.tripleprice%>/ Year
                         </p>
                         <% } %> -->
+
+
+
+
+
+
+
+                        
+
+
+                            <!-- <div class="modal-body">
+                    <div class="row g-2">
+                    <% list.images.forEach(img => { %>
+                        <div class="col-4">
+                        <img src="<%= img.url %>" class="img-fluid rounded">
+                        </div>
+                    <% }) %>
+                    </div>
+                </div> -->
