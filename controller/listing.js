@@ -1,4 +1,6 @@
+const { uploadToCloudinary } = require('../cloudConfig')
 const Listing = require("../models/Listing")
+
 const mbxgeoCoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
 
@@ -49,28 +51,32 @@ module.exports.createNewListing = async (req, res, next)=>{
     })
     .send()
 
-
-    // console.log(response.body.features[0].geometry.coordinates[0], response.body.features[0].geometry.coordinates[1]);
-    // res.send("well done buddy")
-
-    // console.log(req.body.listing.)
+ 
 
     let new_listing = new Listing(req.body.listings);
 
     new_listing.owner = req.user._id;
 
     if (req.files && req.files.length > 0) {
-        new_listing.image = req.files.map(file => ({
-            url: file.path,        // Cloudinary URL
-            filename: file.filename // public_id
+        // Upload each file buffer to Cloudinary first
+        const uploadedImages = await Promise.all(
+            req.files.map(file => uploadToCloudinary(file.buffer, file.mimetype))
+        );
+
+        new_listing.image = uploadedImages.map(result => ({
+            url: result.secure_url,
+            filename: result.public_id,
         }));
     } else {
-        // Optional default image
         new_listing.image = [{
             url: "https://i.pinimg.com/736x/ea/4c/da/ea4cdacc7cf0ac485a4a0589baf4df8b.jpg",
             filename: "default"
         }];
     }
+
+    new_listing.geometry = response.body.features[0].geometry;
+
+    console.log(new_listing);
 
 
   
