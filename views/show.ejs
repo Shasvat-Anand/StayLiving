@@ -2,46 +2,50 @@
 
     <body>
 
+        <script>
+            const mapToken = "<%= process.env.MAP_TOKEN %>"
+        </script>
+
+
+
 
         <div class="row mt-3 d-flex justify-content-center align-item-center">
             <h3>
                 <%= list.owner.username %>
             </h3>
-            
-         <div class="card col-10 p-3">
 
-    <div style="
+            <div class="card col-10 p-3">
+
+                <div style="
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
         gap: 10px;
     ">
-        
-        <% list.image.forEach(img => { %>
-            <img src="<%= img.url %>" 
-                 class="rounded img-fluid"
-                 style="width: 100%; height: 400px; object-fit: cover;">
-            <img src="<%= img.url %>" 
-                 class="rounded img-fluid"
-                 style="width: 100%; height: 400px; object-fit: cover;">
-            <img src="<%= img.url %>" 
-                 class="rounded img-fluid"
-                 style="width: 100%; height: 400px; object-fit: cover;">
-            <img src="<%= img.url %>" 
-                 class="rounded img-fluid"
-                 style="width: 100%; height: 400px; object-fit: cover;">
-            <img src="<%= img.url %>" 
-                 class="rounded img-fluid"
-                 style="width: 100%; height: 400px; object-fit: cover;">
-        <% }) %>
+                    <% if(list.image && list.image.length> 0 ) { %>
 
-    </div>
+                        <% list.image.forEach(img=> { %>
+                            <img src="<%= img.url %>" class="rounded img-fluid"
+                                style="width: 100%; height: 400px; object-fit: cover;">
 
-</div>
+                            <% }) %>
+
+                                <%} else{ %>
+
+                                    <img src="https://i.pinimg.com/736x/17/d6/9e/17d69ea901cdfc39ec7a4e526741ad8f.jpg"
+                                        class="rounded img-fluid"
+                                        style="width: 100%; height: 400px; object-fit: cover;">
+                                    <% } %>
+
+
+
+                </div>
+
+            </div>
 
 
 
 
-             
+
         </div>
 
 
@@ -125,7 +129,17 @@
 
 
 
-                <% if(currUser){ %>
+            <div class="list-group m-5 p-2">
+                <h3>There you will be</h3>
+                <div id="map"></div>
+            </div>
+
+
+            
+
+
+
+                <% if( currUser && currUser.id != list.owner.id){ %>
 
                     <div class="list-group m-5 p-2   ">
                         <div class="row   list-group-item shadow-lg mb-4 ">
@@ -140,7 +154,8 @@
                                 </div>
                                 <div class='row  rounded-full mt-3 mb-3 '>
                                     <!-- i am just add id = "review" -->
-                                    <label for="review" id="review" class="form mb-1 mt-3 form-label">Write your thought</label>
+                                    <label for="review" id="review" class="form mb-1 mt-3 form-label">Write your
+                                        thought</label>
                                     <textarea name="review[comment]" class="textarea p-2  m-2 form-control" required
                                         id="comment" rows="2" cols="20"></textarea>
                                     <div class="invalid-feedback">Write something</div>
@@ -161,7 +176,7 @@
 
 
 
-
+                    <% if(list.reviews.length >= 1) { %>
                         <div class="container my-5">
                             <div class="card shadow-lg">
                                 <div class="card-body">
@@ -197,9 +212,10 @@
                                 </div>
                             </div>
                         </div>
+                    <%}%>
 
 
-
-
-
+    <script src="/js/map.js"></script>
     </body>
+
+  

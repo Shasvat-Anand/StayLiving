@@ -1,4 +1,8 @@
 const Listing = require("../models/Listing")
+const mbxgeoCoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapToken = process.env.MAP_TOKEN;
+
+const geocodingClient = mbxgeoCoding({accessToken : mapToken})
 
 module.exports.index = async (req, res )=>{
     const data = await Listing.find({})     
@@ -14,7 +18,9 @@ module.exports.mycard = async(req, res)=> {
     console.log(curr._id);
     
     const data = await Listing.find({ owner: curr._id });
-    console.log(data);
+    
+    // console.log(data);
+
     res.render("mylisting.ejs", {data});
  
     
@@ -33,6 +39,22 @@ module.exports.createNewListing = async (req, res, next)=>{
         // console.log("vbouw ")
         throw new ExpressError (404, "Send invalid data for listing")
     }
+
+    // delete req.body.listings.image;
+
+
+    const response = await geocodingClient.forwardGeocode({
+    query: req.body.listings.location,
+    limit : 1,
+    })
+    .send()
+
+
+    // console.log(response.body.features[0].geometry.coordinates[0], response.body.features[0].geometry.coordinates[1]);
+    // res.send("well done buddy")
+
+    // console.log(req.body.listing.)
+
     let new_listing = new Listing(req.body.listings);
 
     new_listing.owner = req.user._id;
@@ -53,7 +75,7 @@ module.exports.createNewListing = async (req, res, next)=>{
 
   
 
-    console.log(new_listing);
+    // console.log(new_listing);
    
     await new_listing.save();
     req.flash("success", "New listing is created")

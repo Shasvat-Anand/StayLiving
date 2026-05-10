@@ -133,3 +133,9 @@ label{
     justify-content: center;
     
 }
+
+
+#map{
+    height: 60vh;
+    width: 100;
+}
