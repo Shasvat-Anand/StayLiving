@@ -1,10 +1,14 @@
-const { uploadToCloudinary } = require('../cloudConfig')
 const Listing = require("../models/Listing")
 
+
+// this is for Mapbox map---
+const { uploadToCloudinary } = require('../cloudConfig')
 const mbxgeoCoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
-
 const geocodingClient = mbxgeoCoding({accessToken : mapToken})
+// -----
+
+
 
 module.exports.index = async (req, res )=>{
     const data = await Listing.find({})     

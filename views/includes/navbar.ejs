@@ -1,6 +1,30 @@
+<style>
+ @media (max-width: 991px) {   /* Bootstrap lg breakpoint */
+  #navbarNavAltMarkup {
+    background-color: rgba(255, 255, 255, 0.993);
+    padding: 1rem;
+    margin-top: .5rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 4px 8px 2px rgba(70, 69, 69, 0.687);
+  }
+}
+
+/* On larger screens, keep it clean */
+@media (min-width: 992px) {
+  #navbarNavAltMarkup {
+    background: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+</style>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/listing">
       <i class="fa-solid fa-house-laptop fa-2x"></i>
     </a>
 
@@ -13,17 +37,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
       <!-- Left Side -->
       <div class="navbar-nav">
-        <a class="nav-link active" href="/">Home</a>
-        <a class="nav-link" href="/listing/new">Create New</a>
-        <a class="nav-link" href="/listing">All Listing</a>
-        <a class="nav-link" href="/listing/mylisting">My Listing</a>
+        
+        <a class="nav-link" href="/listing">Explore</a>
+        <a class="nav-link" href="/listing/mylisting">Gallery</a>
       </div>
-
+      
       <!-- Right Side -->
       <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listing/new">Create New</a>
 
          <% if(!currUser){ %>
 

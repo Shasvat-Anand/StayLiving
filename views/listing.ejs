@@ -1,7 +1,113 @@
 <% layout("/Layouts/boilerplate") %>
 
+  <style>
+    #filters{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .filter{
+      text-align: center;
+       margin: 2rem 2rem 2rem;
+       opacity: 1;
+      }
+      .filter:hover{
+        opacity: .8;
+        cursor: pointer;
+      }
+      
+      .icon{
+      padding: .5rem;
 
-  <h1>All Listings are here</h1>
+    }
+    select{
+      border-radius: 5px;
+      padding: 2px;
+    }
+
+     
+
+
+  
+  </style>
+
+  <div id="filters">
+    <div class="filter">
+      <div class="icon"><i class="fa-solid fa-wallet fa-2x"></i></i> 
+         
+      </div> 
+
+      <div>
+        <select name="price" id="price">
+          <option value="default" selected disabled>Price</option>
+          
+          <option value="asc">Low to High</option>
+          <option value="asc">High to Low</option>
+        </select>
+      </div>
+      
+    </div>
+    <!-- Room Type -->
+    <div class="filter">
+      <div class="icon"> <i class="fa-solid fa-snowflake fa-2x"></i>  </div>
+
+       <div>
+        <select name="room-type" id="room-type">
+          
+          <option value="default" selected disabled>Room Type</option>
+          <option value="Ac">AC</option>
+          <option value="Non-Ac">Non-Ac</option>
+        </select>
+      </div>
+      
+    </div>
+
+
+    <!-- Sharing -->
+    <div class="filter">
+      <div class="icon"><i class="fa-solid fa-bed fa-2x"></i> </div>
+      
+      <div>
+        <select name="bed-type" id="bed-type">
+           <option value="default" selected disabled>Sharing</option>
+          
+          <option value="single">Single</option>
+          <option value="double">Double</option>
+          <option value="double">Triple</option>
+        </select>
+      </div>
+      
+    </div>
+
+    <!-- Brand  -->
+    <div class="filter">
+      <div class="icon"><i class="fa-solid fa-hotel fa-2x"></i> </div>
+       
+      <div>
+        <select name="Brand" id="Brand">
+           <option value="default" selected disabled>Brand</option>
+          <option value="Annapurna">Annapurna</option>
+          <option value="Ezstay">Ezstay</option>
+          <option value="Nalanda">Nalanda</option>
+          <option value="Standza">Standza</option>
+        </select>
+      </div>
+      
+    </div>
+
+    <div class="filter">
+      <div class="icon"><i class="fa-solid fa-person-half-dress fa-2x"></i></div>
+       
+      <div>
+        <select name="gender" id="gender">
+           <option value="default" selected disabled>Gender</option>
+          <option value="boys">Boys</option>
+          <option value="girls">Girls</option>
+        </select>
+      </div>
+      
+    </div>
+  </div>
+   
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
 
     <% for (let item of data) { %>
