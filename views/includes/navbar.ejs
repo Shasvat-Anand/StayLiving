@@ -1,73 +1,204 @@
 <style>
- @media (max-width: 991px) {   /* Bootstrap lg breakpoint */
-  #navbarNavAltMarkup {
-    background-color: rgba(255, 255, 255, 0.993);
+
+nav{
+  position: relative;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 991px){
+
+  #navbarNav{
+    position: absolute;
+    top: 72px;
+    left: 12px;
+    right: 12px;
+
+    background: white;
+
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.1);
+
+    overflow: hidden;
+
+    max-height: 0;
+    opacity: 0;
+
+    padding: 0 1rem;
+
+    transition:
+      max-height .35s ease,
+      opacity .3s ease,
+      padding .3s ease;
+
+    z-index: 999;
+  }
+
+  #navbarNav.show{
+    max-height: 600px;
+    opacity: 1;
     padding: 1rem;
-    margin-top: .5rem;
-    border: 1px solid black;
-    border-radius: 10px;
-    box-shadow: 2px 4px 8px 2px rgba(70, 69, 69, 0.687);
+  }
+
+  .navbar-nav .nav-link{
+    padding: .8rem 0;
+    font-weight: 500;
+  }
+
+  /* SEARCH */
+  .search-wrapper{
+    width: 100%;
+    margin: .8rem 0;
+  }
+
+  .search-wrapper form{
+    width: 100%;
+    gap: 8px;
+  }
+
+  .search-inp{
+    width: 100%;
   }
 }
 
-/* On larger screens, keep it clean */
-@media (min-width: 992px) {
-  #navbarNavAltMarkup {
-    background: none;
+
+/* ================= DESKTOP ================= */
+@media (min-width: 992px){
+
+  #navbarNav{
+    position: static;
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
     padding: 0;
-    margin: 0;
+    background: none;
     border: none;
-    box-shadow: none;
+  }
+
+  .search-wrapper{
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+
+  .search-wrapper form{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-inp{
+    width: 220px;
   }
 }
+
+
+/* COMMON */
+.search-inp{
+  border-radius: 10px;
+}
+
+.search-btn{
+  background: linear-gradient(135deg,#7c6aff,#a78bfa);
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.search-btn:hover{
+  color: white;
+}
+
 </style>
 
+
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
+
   <div class="container-fluid">
+
+    <!-- LOGO -->
     <a class="navbar-brand" href="/listing">
       <i class="fa-solid fa-house-laptop fa-2x"></i>
     </a>
 
+    <!-- HAMBURGER -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
+      data-bs-target="#navbarNav"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-      <!-- Left Side -->
-      <div class="navbar-nav">
-        
-        <a class="nav-link" href="/listing">Explore</a>
-        <a class="nav-link" href="/listing/mylisting">Gallery</a>
-      </div>
-      
-      <!-- Right Side -->
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listing/new">Create New</a>
+    <!-- NAVBAR -->
+    <div class="collapse navbar-collapse" id="navbarNav">
 
-         <% if(!currUser){ %>
+      <!-- SEARCH -->
+      <div class="search-wrapper">
+
+        <form class="d-flex" role="search">
+
+          <input
+            class="form-control search-inp"
+            type="search"
+            placeholder="Search listings..."
+          >
+
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+
+        </form>
+
+      </div>
+
+      <!-- LINKS -->
+      <div class="navbar-nav">
+
+        <a class="nav-link" href="/listing">
+          Explore
+        </a>
+
+        <a class="nav-link" href="/listing/mylisting">
+          Gallery
+        </a>
+
+        <a class="nav-link" href="/listing/new">
+          Create New
+        </a>
+
+      </div>
+
+      <!-- AUTH -->
+      <div class="navbar-nav ms-auto">
+
+        <% if(!currUser){ %>
 
           <a class="nav-link" href="/login">
-            <i class="fa-solid fa-right-to-bracket"></i> Login
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
           </a>
-          
+
           <a class="nav-link" href="/signup">
-            <i class="fa-solid fa-user-plus"></i> SignUp
+            <i class="fa-solid fa-user-plus"></i>
+            SignUp
           </a>
 
-        <%}%>
+        <% } %>
 
-        <% if(currUser){ %>     
-          
+        <% if(currUser){ %>
+
           <a class="nav-link" href="/logout">
-            <i class="fa-solid fa-right-from-bracket"></i> Logout
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
           </a>
-          <%} %>
+
+        <% } %>
+
       </div>
+
     </div>
+
   </div>
+
 </nav>
