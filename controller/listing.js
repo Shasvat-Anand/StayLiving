@@ -11,9 +11,64 @@ const geocodingClient = mbxgeoCoding({accessToken : mapToken})
 
 
 module.exports.index = async (req, res )=>{
-    const data = await Listing.find({})     
+    // const data = await Listing.find({}) 
+    // const data = await Listing.find().sort({singleprice : 1})
+
+    let filterquery = {};
+    let sortquery = {};
+
+    if(req.query.bedtype){
+        filterquery.bedtype = req.query.bedtype;
+    }
+
+    if(req.query.roomtype){
+        filterquery.roomtype = req.query.roomtype
+    }
+
+    if(req.query.hosteltype){
+        filterquery.hosteltype = req.query.hosteltype;
+    }
+
+    if(req.query.title){
+        filterquery.title = req.query.title;
+    }
+
+    if(req.query.price == 'asc'){
+        sortquery.singleprice = 1;
+    }
+
+    else if(req.query.price == 'desc'){
+        sortquery.singleprice = -1;
+    }
+
+
+
+
+
+    console.log(filterquery , "filter");
+    console.log(sortquery , "sort");
+
+ 
+     
+
+    const data = await Listing.find(filterquery).sort(sortquery);
+
+    if(data.length >= 1){
+        console.log(data);
+
+        res.render("listing.ejs", {data, filters : req.query});
+    }
+    else{
+        console.log(data)
     
-    res.render("listing.ejs", {data})
+        res.send("not found any listing")
+    }
+      
+
+   
+     
+    
+    // res.render("listing.ejs", {data})
 };
 
 
@@ -96,6 +151,8 @@ module.exports.showListing = async (req, res)=>{
     let {id} = req.params;
     let list =  await Listing.findById(id).populate({path:"reviews", populate:{path : "author"}}).populate("owner");
 
+    
+
     if(!list){
         req.flash("error", "Listing you requested for does not exist!");
         return res.redirect("/listing")
@@ -108,6 +165,8 @@ module.exports.showListing = async (req, res)=>{
 module.exports.renderEditForm = async (req, res)=>{
     let {id} = req.params;   
     let data =  await Listing.findById(id);
+
+  
     
    if(!data){
         req.flash("error", "Listing you requested for does not exist!");

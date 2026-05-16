@@ -28,17 +28,25 @@
   </style>
 
   <div id="filters">
+
+    <!-- price filter -->
     <div class="filter">
-      <div class="icon"><i class="fa-solid fa-wallet fa-2x"></i></i> 
-         
-      </div> 
+      <div class="icon"><i class="fa-solid fa-wallet fa-2x"></i></div> 
 
       <div>
         <select name="price" id="price">
-          <option value="default" selected disabled>Price</option>
+          <option value=""  <%= !filters.price ? "selected" : ""  %> >Price</option>
           
-          <option value="asc">Low to High</option>
-          <option value="asc">High to Low</option>
+          <option value="asc"
+             <%= filters.price === "asc"
+        ? "selected"
+        : "" %>>
+        Low to High</option>
+
+          <option value="desc" <%= filters.price === "desc"
+        ? "selected"
+        : "" %>>
+        High to Low</option>
         </select>
       </div>
       
@@ -50,9 +58,9 @@
        <div>
         <select name="room-type" id="room-type">
           
-          <option value="default" selected disabled>Room Type</option>
-          <option value="Ac">AC</option>
-          <option value="Non-Ac">Non-Ac</option>
+          <option value=""  <%= !filters.roomtype ? "selected" : ""  %> > Room Type</option>
+          <option value="AC" <%= filters.roomtype == "AC" ? "selected" : "" %>>AC</option>
+          <option value="Non-AC" <%= filters.roomtype == "Non-AC" ? "selected" : ""%>>Non-Ac</option>
         </select>
       </div>
       
@@ -60,16 +68,17 @@
 
 
     <!-- Sharing -->
+
     <div class="filter">
       <div class="icon"><i class="fa-solid fa-bed fa-2x"></i> </div>
       
       <div>
         <select name="bed-type" id="bed-type">
-           <option value="default" selected disabled>Sharing</option>
+          <option value=""  <%= !filters.bedtype ? "selected" : ""  %> >Sharing</option>
           
-          <option value="single">Single</option>
-          <option value="double">Double</option>
-          <option value="double">Triple</option>
+          <option value="Single" <%= filters.bedtype == "Single" ? "selected" : ""%>>Single</option>
+          <option value="Double" <%= filters.bedtype == "Double" ? "selected" : ""%>>Double</option>
+          <option value="Triple" <%= filters.bedtype == "Triple" ? "selected" : ""%>>Triple</option>
         </select>
       </div>
       
@@ -81,11 +90,11 @@
        
       <div>
         <select name="Brand" id="Brand">
-           <option value="default" selected disabled>Brand</option>
-          <option value="Annapurna">Annapurna</option>
-          <option value="Ezstay">Ezstay</option>
-          <option value="Nalanda">Nalanda</option>
-          <option value="Standza">Standza</option>
+           <option value=""  <%= !filters.title ? "selected" : ""  %> >Brand</option>
+          <option value="Annapurna" <%= filters.title == "Annapurna" ? "selected" : ""%>>Annapurna</option>
+          <option value="Ezstay" <%= filters.title == "Ezstay" ? "selected" : ""%>>Ezstay</option>
+          <option value="Nalanda" <%= filters.title == "Nalanda" ? "selected" : ""%>>Nalanda</option>
+          <option value="Standza" <%= filters.title == "AC" ? "selected" : ""%>>Standza</option>
         </select>
       </div>
       
@@ -96,9 +105,9 @@
        
       <div>
         <select name="gender" id="gender">
-           <option value="default" selected disabled>Gender</option>
-          <option value="boys">Boys</option>
-          <option value="girls">Girls</option>
+           <option value=""  <%= !filters.hosteltype ? "selected" : ""  %>>Gender</option>
+          <option value="Boys"<%= filters.hosteltype == "Boys" ? "selected" : ""%>>Boys</option>
+          <option value="Girls" <%= filters.hosteltype == "Girls" ? "selected" : ""%>>Girls</option>
         </select>
       </div>
       
@@ -137,6 +146,65 @@
 
     </div>
 
+
+
+
+<script>
+        const pricefilter = document.getElementById("price");
+        const bedtypefilter = document.getElementById("bed-type");
+        const roomtypefilter = document.getElementById("room-type");
+        const brandfilter = document.getElementById("Brand");
+        const genderfilter  = document.getElementById("gender");
+
+        function applyfilter(){
+          const param = new URLSearchParams(window.location.search);
+
+           
+
+          if(pricefilter.value){
+            param.set("price", pricefilter.value);
+          }
+          else{
+            param.delete("price")
+          }
+
+          if(roomtypefilter.value){
+            param.set("roomtype", roomtypefilter.value);
+          }
+          else{
+            param.delete("roomtype");
+          }
+
+          if(bedtypefilter.value){
+            param.set("bedtype" , bedtypefilter.value);
+          }
+          else{
+            param.delete("bedtype")
+          }
+
+          if(brandfilter.value){
+            param.set("title", brandfilter.value)
+          }
+          else{
+            param.delete("title");
+          }
+
+          if(genderfilter.value){
+            param.set("hosteltype", genderfilter.value )
+          }
+          else{
+            param.delete("hosteltype")
+          }
+
+          window.location.href = `/listing?${param.toString()}`
+        }
+
+        pricefilter.addEventListener("change", applyfilter);
+        bedtypefilter.addEventListener("change", applyfilter);
+        roomtypefilter.addEventListener("change", applyfilter);
+        brandfilter.addEventListener("change", applyfilter);
+        genderfilter.addEventListener("change", applyfilter);
+</script>
 
 
    
