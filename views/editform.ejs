@@ -15,6 +15,12 @@
                 <input type="text" name="listing[title]" class="form-control" id="title" required  value="<%= data.title %>">
                 <div class="valid">Looks Good</div>
             </div>
+
+            <div class="mb-3">
+                <label for="Brand" class="form-label">Brand</label>
+                <input type="text" name="listing[Brand]" class="form-control" id="Brand" required  value="<%= data.Brand %>">
+                <div class="valid">Looks Good</div>
+            </div>
             
             <div class="row">
 
@@ -53,28 +59,16 @@
             <div class="row">
 
                 <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-                    <label for="singleprice" class="form-label">Single Bed Price</label>
-                    <input type="text" id="singleprice" name="listing[singleprice]" required class="form-control"
-                        value="<%= data.singleprice  %>">
+                    <label for="price" class="form-label">Single Bed Price</label>
+                    <input type="text" id="price" name="listing[price]" required class="form-control"
+                        value="<%= data.price  %>">
                     <div class="valid">Looks Good</div>
                 </div>
 
-                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                    <label for="doubleprice" class="form-label">Double Bed Price</label>
-
-                    <input type="text" id="doubleprice" name="listing[doubleprice]" required class="form-control"
-                         value="<%= data.doubleprice  %>">
-                    <div class="valid">Looks Good</div>
-                </div>
+                
 
 
-                <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                    <label for="tripleprice" class="form-label">Triple Bed Price</label>
-
-                    <input type="text" id="tripleprice" name="listing[tripleprice]" required class="form-control"
-                         value="<%= data.tripleprice  %>">
-                    <div class="valid">Looks Good</div>
-                </div>
+                 
 
 
                 <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
@@ -122,10 +116,33 @@
             </div>
 
 
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
                 <input type="text" id="Image" name="listing[image]" class="form-control" required  value="<%= data.image %>">
                 <div class="valid">Please enter image url</div>
+            </div> -->
+
+
+            <div class="mb-3">
+                <label class="form-label">Image URL</label>
+
+                <input
+                type="text"
+                name="listing[image][0][url]"
+                class="form-control"
+                value="<%= data.image[0].url %>"
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Filename</label>
+
+                <input
+                type="text"
+                name="listing[image][0][filename]"
+                class="form-control"
+                value="<%= data.image[0].filename %>"
+                >
             </div>
 
  

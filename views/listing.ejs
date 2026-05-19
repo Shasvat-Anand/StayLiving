@@ -60,7 +60,7 @@
           
           <option value=""  <%= !filters.roomtype ? "selected" : ""  %> > Room Type</option>
           <option value="AC" <%= filters.roomtype == "AC" ? "selected" : "" %>>AC</option>
-          <option value="Non-AC" <%= filters.roomtype == "Non-AC" ? "selected" : ""%>>Non-Ac</option>
+          <option value="Non-AC" <%= filters.roomtype == "Non-AC" ? "selected" : ""%>>Non-AC</option>
         </select>
       </div>
       
@@ -90,11 +90,11 @@
        
       <div>
         <select name="Brand" id="Brand">
-           <option value=""  <%= !filters.title ? "selected" : ""  %> >Brand</option>
-          <option value="Annapurna" <%= filters.title == "Annapurna" ? "selected" : ""%>>Annapurna</option>
-          <option value="Ezstay" <%= filters.title == "Ezstay" ? "selected" : ""%>>Ezstay</option>
-          <option value="Nalanda" <%= filters.title == "Nalanda" ? "selected" : ""%>>Nalanda</option>
-          <option value="Standza" <%= filters.title == "AC" ? "selected" : ""%>>Standza</option>
+           <option value=""  <%= !filters.Brand ? "selected" : ""  %> >Brand</option>
+          <option value="Annapurna" <%= filters.Brand == "Annapurna" ? "selected" : ""%>>Annapurna</option>
+          <option value="Ezstay" <%= filters.Brand == "Ezstay" ? "selected" : ""%>>Ezstay</option>
+          <option value="Nalanda" <%= filters.Brand == "Nalanda" ? "selected" : ""%>>Nalanda</option>
+          <option value="Stanza" <%= filters.Brand == "Stanza" ? "selected" : ""%>>Stanza</option>
         </select>
       </div>
       
@@ -134,9 +134,7 @@
               <h5 class="card-title">
                 <%= item.title %>
               </h5>
-              <!-- <p> ₹ <%= item.singleprice != 0 ? item.singleprice.toLocaleString('en-IN') : "N/A" %> /year</p> -->
-              <!-- <p> ₹ <%= item.doubleprice != 0  ? item.doubleprice.toLocaleString('en-IN') : "N/A" %> /year</p> -->
-              <!-- <p> ₹ <%= item.tripleprice != 0 ? item.tripleprice.toLocaleString('en-IN') : "N/A" %> /year</p> -->
+            
              
             </div>
         </a>
@@ -183,10 +181,10 @@
           }
 
           if(brandfilter.value){
-            param.set("title", brandfilter.value)
+            param.set("Brand", brandfilter.value)
           }
           else{
-            param.delete("title");
+            param.delete("Brand");
           }
 
           if(genderfilter.value){

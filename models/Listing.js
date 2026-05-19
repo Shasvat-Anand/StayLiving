@@ -7,6 +7,10 @@ const ListingSchema = new mongoose.Schema({
         require: true
 
     },
+    Brand:{
+        type:String,
+        require : true
+    },
     description: {
         type: String,
     },
@@ -23,18 +27,11 @@ const ListingSchema = new mongoose.Schema({
     ],
          
   
-    singleprice: {
+    price: {
         type: Number,
         require: true
     },
-    doubleprice: {
-        type: Number,
-        require: true
-    },
-    tripleprice: {
-        type: Number,
-        require: true
-    },
+    
     bedtype:{
         type: String,
         require : true

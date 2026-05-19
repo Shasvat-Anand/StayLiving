@@ -55,6 +55,10 @@
                 <label> Hostel Name : </label>
                 <%= list.title %>
             </li>
+            <li class="list-group-item fw-bold fs-5">
+                <label>Brand : </label>
+                <%= list.Brand %>
+            </li>
 
             <li class="list-group-item text-muted">
                 <label>Facility Provide : </label>
@@ -82,14 +86,14 @@
             </li>
 
 
-            <%if(list.singleprice !=0){ %>
+            <%if(list.price != 0){ %>
 
                 <li class="list-group-item text-success fw-semibold">
 
-                    <label> Single Bed Price</label> ₹ <%= list.singleprice %>
+                    <label> Bed Price</label>  ₹ <%= list.price %>
                 </li>
                 <%} %>
-                    <%if(list.doubleprice !=0){ %>
+                    <!-- <%if(list.doubleprice !=0){ %>
 
                         <li class="list-group-item text-success fw-semibold">
 
@@ -102,7 +106,7 @@
 
                                     <label>Triple Bed Price</label> ₹ <%= list.tripleprice %>
                                 </li>
-                                <%} %>
+                                <%} %> -->
 
                                     <li class="list-group-item">
                                         <label>Location</label> 📍 <%= list.location %>, <%= list.country %>

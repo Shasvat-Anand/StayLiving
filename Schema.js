@@ -3,6 +3,7 @@ const Joi = require('joi');
 module.exports.listingSchema = Joi.object({
     listings: Joi.object({
         title: Joi.string().required(),
+        Brand:Joi.string().required(),
         description : Joi.string().required(),
         location : Joi.string().required(),
         country : Joi.string().required(),
@@ -12,9 +13,8 @@ module.exports.listingSchema = Joi.object({
         roomtype : Joi.string().required(),
         contact: Joi.string().required().length(10).pattern(/^[0-9]{10}$/),
         alternatecontact: Joi.string().required().length(10).pattern(/^[0-9]{10}$/),
-        singleprice: Joi.number().required().min(0),
-        doubleprice: Joi.number().required().min(0),
-        tripleprice: Joi.number().required().min(0),
+        price: Joi.number().required().min(0),
+       
         image: Joi.array().items(
             Joi.object({
             url: Joi.string().required(),

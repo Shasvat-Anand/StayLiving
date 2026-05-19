@@ -29,16 +29,16 @@ module.exports.index = async (req, res )=>{
         filterquery.hosteltype = req.query.hosteltype;
     }
 
-    if(req.query.title){
-        filterquery.title = req.query.title;
+    if(req.query.Brand){
+        filterquery.Brand = req.query.Brand;
     }
 
     if(req.query.price == 'asc'){
-        sortquery.singleprice = 1;
+        sortquery.price = 1;
     }
 
     else if(req.query.price == 'desc'){
-        sortquery.singleprice = -1;
+        sortquery.price = -1;
     }
 
 
@@ -114,6 +114,8 @@ module.exports.createNewListing = async (req, res, next)=>{
 
     let new_listing = new Listing(req.body.listings);
 
+    console.log(new_listing)
+
     new_listing.owner = req.user._id;
 
     if (req.files && req.files.length > 0) {
@@ -166,6 +168,8 @@ module.exports.renderEditForm = async (req, res)=>{
     let {id} = req.params;   
     let data =  await Listing.findById(id);
 
+    
+
   
     
    if(!data){
@@ -183,9 +187,17 @@ module.exports.updateListing = async (req, res)=>{
     const listing = req.body.listing;
 
    
-    
+    console.log(listing);
 
+    const response = await geocodingClient.forwardGeocode({
+    query: listing.location,
+    limit : 1,
+    })
+    .send()
+
+    
     // await Listing.findByIdAndUpdate(id,{title, image, description, price, location, country}, {new : true});
+    listing.geometry = response.body.features[0].geometry;
     await Listing.findByIdAndUpdate(id, req.body.listing, {new : true});
     req.flash("success", "Listing Upadated")
     res.redirect(`/listing/${id}`)
